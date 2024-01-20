@@ -1,0 +1,3 @@
+name: Kontinuum
+include: .
+depend: agda-stdlib
