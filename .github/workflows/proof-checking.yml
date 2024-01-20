@@ -2,7 +2,7 @@ name: Proof Checking and Deploy HTML
 on: [push]
 
 env:
-  AGDA_VERSION: 2.6.0.1-1build4
+  AGDA_VERSION: 2.6.3-1build1
 
 jobs:
   proof-checking:
