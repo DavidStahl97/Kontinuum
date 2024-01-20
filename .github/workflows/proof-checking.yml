@@ -17,7 +17,7 @@ jobs:
 
     - name: Install Agda
       run: |
-        sudo apt-get install -y agda-bin=${{ env.AGDA_VERSION }}
+        sudo apt-get install -y agda=${{ env.AGDA_VERSION }}
         sudo agda --version
 
     - name: Generate Agda Modules for Proof Checking
