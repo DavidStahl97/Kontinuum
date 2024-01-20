@@ -13,4 +13,27 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Update APT
-      run: sudo apt-get update 
+      run: sudo apt-get update
+
+    - name: Install Agda
+      run: |
+        sudo apt-get install -y agda-bin=${{ env.AGDA_VERSION }}
+        sudo agda --version
+
+    - name: Generate Agda Modules for Proof Checking
+      shell: pwsh
+      run: .\scripts\publish.ps1
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      with:
+        BRANCH: gh-pages
+        FOLDER: src/docs  
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: code-coverage-report
+        path: /usr/share/libghc-agda-dev     
